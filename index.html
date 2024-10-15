@@ -68,7 +68,7 @@ const find=async()=>{
                        <div class="col">
                         <p></p>
 
-                        <h2>${result.main.temp}</h2>
+                        <h2>${result.main.temp}°C</h2>
                         <span></span>
 
                     </div>
@@ -83,7 +83,7 @@ const find=async()=>{
                          <img src="img/wind.png" alt=""> 
 
                         <p>wind</p>
-                        <p class="wind">${result.wind.speed}</p>
+                        <p class="wind">${result.wind.speed}km/hr</p>
                     </div>
                     <div class="col">
 
@@ -114,7 +114,7 @@ const find=async()=>{
               
                 alert("api error")
                 output.innerHTML=`
-                   <h3 class="text-danger"> invalid city ${err}</h3>`
+                   <h3 class="text-danger"> invalid city</h3>`
 
         }
        
