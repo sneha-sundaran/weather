@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weathe App</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" href="img/clear.png" />
+</head>
+
+<body>
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="Enter a City Name" spellcheck="false" id="inputvalue">
+            <button><img src="img/search.png" alt="" id="search" onclick="find()"></button>
+
+        </div>
+
+
+
+
+        <div class="weather" id="output">
+            <!-- <img src="img/rain.png" class="weather-icon" alt=""> -->
+            <!-- <div id="output">
+
+            </div> -->
+
+            <!-- <h4>Place</h4> -->
+            <!-- <p>date</p>
+            <div id="output">
+                <h1 class="temp">22*C</h1>
+                <h2 class="city">New York</h2>
+              
+            </div> -->
+        </div>
+    </div>
+</body>
+<script>
+
+const find=async()=>{
+    if (inputvalue.value != ""){
+        try{
+
+            response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputvalue.value}&appid=5b4bee0ba241d092159faf007e166080&units=metric`)
+    console.log(response);
+   const result=await response.json()
+   console.log(result);
+
+   console.log();
+   
+ 
+ 
+  
+
+   if (result.status == 404) {
+    alert("not found")
+     output.innerHTML = `<h4 style="color:red;">  city ${result.message}</h4>`
+   }
+   else{
+            output.innerHTML = `  <div class="details">
+                    <div class="col">
+                        <p></p>
+
+                        <h2>${result.name}</h2>
+
+                    </div>
+                       <div class="col">
+                        <p></p>
+
+                        <h2>${result.main.temp}</h2>
+                        <span></span>
+
+                    </div>
+                    <div class="col">
+
+                         <img src="img/humidity.png" alt=""> 
+
+                        <p>humidity</p>
+                        <p class="humidity">${result.main.humidity}</p>
+                    </div>
+                    <div class="col">
+                         <img src="img/wind.png" alt=""> 
+
+                        <p>wind</p>
+                        <p class="wind">${result.wind.speed}</p>
+                    </div>
+                    <div class="col">
+
+                        <p>pressure</p>
+                        <p class="pressure">${result.main.pressure}</p>
+
+                    </div>
+                    <div class="col">
+
+                        
+                        <p class="date">${new Date()}</p>
+                         
+                       
+
+                    </div>
+                </div>
+
+
+                    `
+                
+   }
+
+
+        }
+        catch(err)
+        {
+        
+              
+                alert("api error")
+                output.innerHTML=`
+                   <h3 class="text-danger"> invalid city ${err}</h3>`
+
+        }
+       
+
+    }
+  
+
+
+
+    else{
+            output.innerHTML = `
+            <h3 class="text-danger"> enter a city name</h3>`
+        }
+
+
+   
+}
+    
+
+
+</script>
+
+</html>
